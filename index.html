@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StopWatch</title>
+  <link rel="stylesheet" href="stopwatch.css" />
+</head>
+
+<body>
+  <main class="app" aria-label="発表計測ストップウォッチ">
+    <header class="top">
+      <div class="top__left" aria-hidden="true"></div>
+
+      <section class="timer" aria-label="計測タイマー">
+        <div id="time_area" class="timer__time" aria-live="polite">00:00.000</div>
+        <div class="timer__buttons" role="group" aria-label="操作">
+          <button id="start" class="btn btn--primary" type="button">START</button>
+          <button id="stop" class="btn btn--danger" type="button" disabled>STOP</button>
+          <button id="reset" class="btn" type="button" disabled>RESET</button>
+        </div>
+      </section>
+
+      <aside class="top__right">
+        <div class="hint" aria-label="使い方ヒント">
+          <div class="hint__title">使い方</div>
+          <div class="hint__body">
+            start → ページ切替ごとに Time per page → 必要なら record → 最後に stop（txt保存）
+          </div>
+        </div>
+      </aside>
+    </header>
+
+    <section class="content" aria-label="PDFとメモ">
+      <div class="card">
+        <div class="card__header">
+          <div class="card__title">PDF / コメント</div>
+          <div class="card__actions">
+            <label class="file" for="pdf">
+              <span class="file__label">ファイルを選択</span>
+              <input accept=".pdf,application/pdf" type="file" id="pdf" />
+            </label>
+            <button id="check" class="btn" type="button">record</button>
+          </div>
+        </div>
+
+        <div class="card__body split">
+          <div class="pdf" aria-label="PDFプレビュー">
+            <div id="pdf_view" class="pdf__pages" role="list" aria-label="ページ一覧"></div>
+          </div>
+
+          <div class="memo" aria-label="コメント入力">
+            <label class="memo__label" for="annotation">コメント（先頭行にページ番号が入ります）</label>
+            <textarea id="annotation" class="memo__textarea" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card side">
+        <div class="card__header">
+          <div class="card__title">Time per page</div>
+          <div class="card__actions">
+            <button id="rap" class="btn btn--primary" type="button">Time per page</button>
+          </div>
+        </div>
+
+        <div class="card__body">
+          <label class="memo__label" for="rap-info">記録（読み取り専用）</label>
+          <textarea id="rap-info" class="memo__textarea" readonly></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 既存仕様維持のため（UI上は非表示） -->
+    <textarea id="invisible" class="sr-only" aria-hidden="true"></textarea>
+  </main>
+
+  <!-- pdf.js -->
+  <script src="./pdfjs-dist/build/pdf.js"></script>
+  <script defer src="stopwatch.js"></script>
+</body>
+</html>
