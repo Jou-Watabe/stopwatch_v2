@@ -91,6 +91,14 @@ body{
   justify-items: center;
 }
 .timer__time{
+  font-family: ui-monospace, 
+               SFMono-Regular, 
+               Menlo, 
+               Monaco, 
+               Consolas, 
+               "Liberation Mono", 
+               "Courier New", 
+               monospace;
   font-variant-numeric: tabular-nums;
   font-size: clamp(44px, 5vw, 72px);
   font-weight: 800;
